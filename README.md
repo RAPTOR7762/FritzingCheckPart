@@ -1,29 +1,26 @@
-
-Description:
-
-	FritzingCheckPart.py is a python script which checks parts files for
+# Description:
+FritzingCheckPart.py is a python script which checks parts files for
 use by the Fritzing EDA program (fritzing.org). It started out to correct 
 some of the issues that Fritzing has with the output from the Inkscape 
 (inkscape.org) open source svg editor program. It then grew in to checking the
 format of the various file (fzp and svg) that make up a fritzing part. 
-	As a part of that it also prettyprints xml (with varying success), it 
+	
+As a part of that it also prettyprints xml (with varying success), it 
 does best with postprocessed fritzing svg files, because it understands their
 format and has modified the xml (mostly moving CSS style commands in to inline
 xml which as a side effect makes prettyprinting easier), to better suit 
 fritzing. A standalone script PP.py, is included which will prettyprint a 
 xml document without doing any of the fritzing related conversions.
 
-Installation:
-
-	The script uses python3 and the lxml library extensions to python.
+## Installation
+The script uses python3 and the lxml library extensions to python.
 Since Fritzing runs on Windows, linux and MacOS X the script should run on
 those platforms too, and it may. I don't have MacOS X so I don't know that 
 it will run there (although there is no reason that it shouldn't, I just
 haven't done it.)
 
-On Windows:
-
-	I run the script from cygwin on Windows. It will likely run on one of
+### On Windows
+I run the script from cygwin on Windows. It will likely run on one of
 the native python implementations (you may need to use pip to install the lxml
 extension) but I haven't done so. For cygwin you need to install cygwin 
 (cygwin.org) using the setup program as detailed on cygwin.org. The basic 
@@ -45,7 +42,7 @@ to /usr/local/bin
 
 chmod ugo+x /usr/local/bin/*.py
 
-On Linux (Ubuntu 16.04 LTS):
+### On Linux (Ubuntu 16.04 LTS)
 
 copy the py scripts to /usr/local/bin via sudo:
 
@@ -61,12 +58,11 @@ The Ubuntu install appears to have lxml and python 3 already installed
 Note the script has problems with unicode under python 2.7 and probably won't
 run there without modification (which I don't know how to make). 
 
-Testing:
-
+## Testing
 Assuming you have Fritzing installed the following will check (and complain
 about!) the parts in core:
 
-mkdir tst
+### mkdir tst
 
 FritzingCheckPart.py fritzing-0.9.3b.linux.AMD64/fritzing-parts/core tst
 
@@ -87,9 +83,9 @@ Connector0 doesn't exist (connectors should start at 0)
 ...
 
 
-Normal use:
+### Normal use
 
-PrettyPrinting:
+**PrettyPrinting**
 
 PP.py xml_file [another_xml_file ...]
 
