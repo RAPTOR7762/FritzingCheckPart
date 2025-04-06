@@ -1,4 +1,5 @@
-# Description:
+# Description
+
 FritzingCheckPart.py is a python script which checks parts files for
 use by the Fritzing EDA program (fritzing.org). It started out to correct 
 some of the issues that Fritzing has with the output from the Inkscape 
@@ -8,11 +9,10 @@ format of the various file (fzp and svg) that make up a fritzing part.
 As a part of that it also prettyprints xml (with varying success), it 
 does best with postprocessed fritzing svg files, because it understands their
 format and has modified the xml (mostly moving CSS style commands in to inline
-xml which as a side effect makes prettyprinting easier), to better suit 
-fritzing. A standalone script PP.py, is included which will prettyprint a 
-xml document without doing any of the fritzing related conversions.
+xml which as a side effect makes prettyprinting easier), to better suit fritzing. A standalone script PP.py, is included which will prettyprint a xml document without doing any of the fritzing related conversions.
 
 ## Installation
+
 The script uses python3 and the lxml library extensions to python.
 Since Fritzing runs on Windows, linux and MacOS X the script should run on
 those platforms too, and it may. I don't have MacOS X so I don't know that 
@@ -20,7 +20,9 @@ it will run there (although there is no reason that it shouldn't, I just
 haven't done it.)
 
 ### On Windows
+
 **Cygwin**
+
 I run the script from cygwin on Windows. For cygwin you need to install [cygwin](cygwin.org) using the setup program as detailed on cygwin.org. The basic 
 install with the following additions does fine:
 
@@ -31,16 +33,17 @@ python3-lxml: Python XML2/XSLT bindings
 
 with that in place from a cygwin terminal copy the python scripts 
 
-FritzingCheckPart.py
-FritzingTools.py
-PP.py
-PPTools.py
+    FritzingCheckPart.py
+    FritzingTools.py
+    PP.py
+    PPTools.py
 
 to /usr/local/bin
 
 chmod ugo+x /usr/local/bin/*.py
 
 **Native Python Implimentation**
+
 It will run on one of the native python implementations (you may need to use pip to install the lxml extension) 
 
 (RAPTOR7762) For me I run the script with terminal like this:
@@ -51,10 +54,10 @@ It will run on one of the native python implementations (you may need to use pip
 
 copy the py scripts to /usr/local/bin via sudo:
 
-sudo cp FritzingCheckPart.py /usr/local/bin 
-sudo cp FritzingTools.py /usr/local/bin 
-sudo cp PP.py /usr/local/bin 
-sudo cp PPTools.py /usr/local/bin 
+    sudo cp FritzingCheckPart.py /usr/local/bin 
+    sudo cp FritzingTools.py /usr/local/bin 
+    sudo cp PP.py /usr/local/bin 
+    sudo cp PPTools.py /usr/local/bin 
 
 chmod ugo+x /usr/local/bin/*.py
 
