@@ -1,10 +1,7 @@
-# Description
+# FritzingCheckPart.py
 
 FritzingCheckPart.py is a python script which checks parts files for
-use by the Fritzing EDA program (fritzing.org). It started out to correct 
-some of the issues that Fritzing has with the output from the Inkscape 
-(inkscape.org) open source svg editor program. It then grew in to checking the
-format of the various file (fzp and svg) that make up a fritzing part. 
+use by the [Fritzing EDA program](fritzing.org). It started out to correct some of the issues that Fritzing has with the output from the [Inkscape](inkscape.org) open source svg editor program. It then grew in to checking the format of the various file (fzp and svg) that make up a fritzing part. 
 	
 As a part of that it also prettyprints xml (with varying success), it 
 does best with postprocessed fritzing svg files, because it understands their
@@ -72,7 +69,7 @@ about!) the parts in core:
 
 ### mkdir tst
 
-FritzingCheckPart.py fritzing-0.9.3b.linux.AMD64/fritzing-parts/core tst
+    FritzingCheckPart.py fritzing-0.9.3b.linux.AMD64/fritzing-parts/core tst
 
 (replace the fritzing-0.9.3b.linux.AMD64/fritzing-parts/core with the path
  to your fritzing-parts core directory!)
@@ -80,15 +77,13 @@ FritzingCheckPart.py fritzing-0.9.3b.linux.AMD64/fritzing-parts/core tst
 which should produce output like this (in large volume) on the console:
 
 
-**** Starting to process file 10x2-Epaper-Breakout-Board-v11.fzp
+    **** Starting to process file 10x2-Epaper-Breakout-Board-v11.fzp
 
+    Error: File '/cygdrive/c/fritzing/fritzing.0.9.3b.64.pc/fritzing.0.9.3b.64.pc/fritzing-parts/core/10x2-Epaper-Breakout-Board-v11.fzp'
 
-Error: File
-'/cygdrive/c/fritzing/fritzing.0.9.3b.64.pc/fritzing.0.9.3b.64.pc/fritzing-parts/core/10x2-Epaper-Breakout-Board-v11.fzp'
+    Connector0 doesn't exist (connectors should start at 0)
 
-Connector0 doesn't exist (connectors should start at 0)
-
-...
+    ...
 
 
 ### Normal use
