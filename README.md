@@ -20,10 +20,8 @@ it will run there (although there is no reason that it shouldn't, I just
 haven't done it.)
 
 ### On Windows
-I run the script from cygwin on Windows. It will likely run on one of
-the native python implementations (you may need to use pip to install the lxml
-extension) but I haven't done so. For cygwin you need to install cygwin 
-(cygwin.org) using the setup program as detailed on cygwin.org. The basic 
+**Cygwin**
+I run the script from cygwin on Windows. For cygwin you need to install [cygwin](cygwin.org) using the setup program as detailed on cygwin.org. The basic 
 install with the following additions does fine:
 
 python3: Py3K language interpreter 
@@ -41,6 +39,13 @@ PPTools.py
 to /usr/local/bin
 
 chmod ugo+x /usr/local/bin/*.py
+
+**Native Python Implimentation**
+It will run on one of the native python implementations (you may need to use pip to install the lxml extension) 
+
+(RAPTOR7762) For me I run the script with terminal like this:
+
+    C:\...\some_folder>python FritzingCheckPart.py some_file.fzp/svg
 
 ### On Linux (Ubuntu 16.04 LTS)
 
