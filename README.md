@@ -601,59 +601,61 @@ View tag isn't one of (iconView breadboardView schematicView pcbView) which it s
 
 The file name for the svg file is missing in the fzp file. 
 
-
+```
 Error 31: File
 'filename.fzp'
 At line 20
 
 Multiple viewname image files present
+```
 
 There is more than one image file name present, there should only be one. 
 
-
+```
 Error 32: File
 'filename.fzp'
 At line 20
 
 No layerId value present
+```
 
 There is a layerId attribute present, but it has no value (and it needs one). 
 
-
+```
 Error 33: File
 'filename.fzp'
 At line 20
 
 View viewname already has layerId layername, layername1 ignored
+```
 
 The layerId isn't unique and it must be. 
 
  
-Error 34: File
-'filename.fzp'
+    Error 34: File
+    'filename.fzp'
 
-No views found.
+    No views found.
 
 There are no views found in the fzp file. There isn't a line number because this occurs after we have seen all the lines that may contain a view.
 
 
-Error 35: File
-'filename.fzp'
+    Error 35: File
+    'filename.fzp'
 
-Unknown view viewname found. (Typo?)
+    Unknown view viewname found. (Typo?)
 
 Found a view name that isn't one of iconView breadboardView schematicView or pcbView (probably a typo)
 
 
-Error 36: File
-'filename.fzp'
+    Error 36: File
+    'filename.fzp'
 
-No valid views found.
+    No valid views found.
 
-	Didn't find any of iconView breadboardView schematicView or pcbView
-	in the list of view names.
+Didn't find any of iconView breadboardView schematicView or pcbView in the list of view names.
 
-
+```
 Error 37: File
 'filename.fzp'
 
@@ -661,115 +663,108 @@ This is a smd part as only the copper0 view is present but it is on the
 bottom layer, not the top. If you wanted a smd part change copper0 to 
 copper 1 at line 20 If you wanted a through hole part add the copper1
 definition after line 19
+```
 
-	This is a smd part but it is on the wrong layer (and thus likely an
-	error). If you really want the part to be on the bottom for something
-	this error can be ignored.
+This is a smd part but it is on the wrong layer (and thus likely an error). If you really want the part to be on the bottom for something this error can be ignored.
 
+    Error 38: File
+    'filename.fzp'
+    At line 20
 
-Error 38: File
-'filename.fzp'
-At line 20
+    State error, tag stack is at level 8 and should only go to level 7
 
-State error, tag stack is at level 8 and should only go to level 7
-
-	This error indicates that there are too many lines in the fzp file
-	as the tags have gotten deeper than is possible for a valid file. 
+This error indicates that there are too many lines in the fzp file as the tags have gotten deeper than is possible for a valid file. 
 
 
-Error 39: File
-'filename.fzp'
-At line 20
+    Error 39: File
+    'filename.fzp'
+    At line 20
 
-Connector has no id
+    Connector has no id
 
-	A connector has no id associated with it and it must have one.
-
-
-Error 40: File
-'filename.fzp'
-At line 20
-
-Connector has no Name
-
-	A connector has no Name associated with it and it must have one.
+A connector has no id associated with it and it must have one.
 
 
-Error 41: File
-'filename.fzp'
-At line 20
+    Error 40: File
+    'filename.fzp'
+    At line 20
 
-Connector connector3 has no Type
+    Connector has no Name
 
-	A connector has to have type male or female and has neither.
+A connector has no Name associated with it and it must have one.
 
+    Error 41: File
+    'filename.fzp'
+    At line 20
 
-Error 42: File
-'filename.fzp'
-At line 20
+    Connector connector3 has no Type
 
-Connector connector3 has no description
+A connector has to have type male or female and has neither.
 
-	A connector doesn't have a description. When you hover on a pad in 
-	breadboard or schematic you won't get a description. 
+    Error 42: File
+    'filename.fzp'
+    At line 20
 
+    Connector connector3 has no description
 
-Error 43: File
-'filename.fzp'
-At line 20
-
-Connector connector3 missing view name 
-
-	The connector doesn't have a view name. 
+A connector doesn't have a description. When you hover on a pad in breadboard or schematic you won't get a description. 
 
 
-Error 44: File
-'filename.fzp'
-At line 20
+    Error 43: File
+    'filename.fzp'
+    At line 20
 
-Viewname bbreadboardView invalid (typo?)
+    Connector connector3 missing view name 
 
-	The viewname isn't one of breadboardView schematicView pcbView and
-	it should be. 
+The connector doesn't have a view name. 
 
+    Error 44: File
+    'filename.fzp'
+    At line 20
 
+    Viewname bbreadboardView invalid (typo?)
+
+The viewname isn't one of breadboardView schematicView pcbView and it should be. 
+
+```
 Error 45: File
 'filename.fzp'
 At line 20
 
 Layer missing
+```
 
-	The layer attribute is missing in the fzp file. 
+The layer attribute is missing in the fzp file. 
 
-
+```
 Error 46: File
 'filename.fzp'
 At line 20
 
 No layerId for View SchematicView
+```
 
-	A layerId wasn't specified for this view earlier in the fzp file. 
+A layerId wasn't specified for this view earlier in the fzp file. 
 
-
+```
 Error 47: File
 'filename.fzp'
 At line 20
 
 LayerId here doesn't match View schematicView layerId schematic
+```
 
-	A layerId here doesn't match the layerId specified earlier for this
-	view (or views in the case of pcb view which can have multiple 
-	layerids.) 
+A layerId here doesn't match the layerId specified earlier for thisview (or views in the case of pcb view which can have multiple layerIDs.) 
 
-
+```
 Error 48: File
 'filename.fzp'
 At line 20
 
 Connector connector4 layer copper0 already defined, must be unique
+```
 
-	This connectorid layer combination is already defined and must be
-	unique.
+This connectorid layer combination is already defined and must be unique.
 
 
 Error 49: File
@@ -778,7 +773,7 @@ At line 20
 
 hybrid is present but isn't 'yes' but yyes (typo?)
 
-	The hybrid flag is present but with an invalid value (it must be yes).
+The hybrid flag is present but with an invalid value (it must be yes).
 
 
 Error 50: File
@@ -787,7 +782,7 @@ At line 20
 
 Tag svgId is present but has no value
 
-	The listed tag is present but has no value set. 
+The listed tag is present but has no value set. 
 
 
 Error 51: File
@@ -796,7 +791,7 @@ At line 20
 
 svgId missing
 
-	There is no svgId present for this connector and one is required. 
+There is no svgId present for this connector and one is required. 
 
 
 Error 52: File
@@ -805,7 +800,7 @@ At line 20
 
 Bus bus2 already defined
 
-	There is aready a bus with this id and ids must be unique. 
+There is aready a bus with this id and ids must be unique. 
 
 
 Error 53: File
@@ -814,7 +809,7 @@ At line 20
 
 Bus nodeMember connector2 does't exist
 
-	The nodeMember specified doesn't exist and it must. 
+The nodeMember specified doesn't exist and it must. 
 
 
 Error 54: File
@@ -823,8 +818,7 @@ At line 20
 
 Bus nodeMember connector2 already in bus bus3
 
-	The nodeMember specified is already in the specified bus and can't
-	be in two at once. 
+The nodeMember specified is already in the specified bus and can't be in two at once. 
 
 
 Error 55: File
@@ -833,7 +827,7 @@ At line 20
 
 Subpart has no id
 
-	The subpart is missing the id field (required)
+The subpart is missing the id field (required)
 
 
 Error 56: File
@@ -842,8 +836,7 @@ At line 20
 
 Subpart id subpartid already exists (must be unique)
 
-	The subpart is already in use for another subpart and must be unique.
-
+The subpart is already in use for another subpart and must be unique.
 
 Error 57: File
 'filename.fzp'
@@ -851,7 +844,7 @@ At line 20
 
 Subpart has no label
 
-	The subpart has not label and it needs one. 
+The subpart has not label and it needs one. 
 
 
 Error 58: File
@@ -860,7 +853,7 @@ At line 20
 
 Subpart subpartid already defined (duplicate?)
 
-	The subpart has already been defined and must be unique. 
+The subpart has already been defined and must be unique. 
 
 
 Error 59: File
@@ -869,7 +862,7 @@ At line 20
 
 Connector id missing, ignored
 
-	The subpart definition is missing the id field. 
+The subpart definition is missing the id field. 
 
 
 Error 60: File
@@ -878,7 +871,7 @@ At line 20
 
 Connector connector2 doesn't exist (and it must)
 
-	The connector id isn't already defined in the fzp file and it must be.
+The connector id isn't already defined in the fzp file and it must be.
 
 
 Error 61: File
@@ -887,8 +880,7 @@ At line 20
 
 Subpart connector connector0 already in subpart sub1
 
-	The connector id is already part of another subpart and can only be
-	in one subpart. 
+The connector id is already part of another subpart and can only be in one subpart. 
 
 
 Error 62: File
@@ -896,8 +888,7 @@ Error 62: File
 
 No connectors found to check
 
-	There are no connectors defined when we tried to check that the
-	connectors are in the correct sequence. 
+There are no connectors defined when we tried to check that the connectors are in the correct sequence. 
 
 
 Error 63: File
@@ -905,7 +896,7 @@ Error 63: File
 
 Connector0 doesn't exist (connectors should start at 0)
 
-	There isn't a connector0 and there should be. 
+There isn't a connector0 and there should be. 
 
 
 Error 64: File
@@ -913,9 +904,7 @@ Error 64: File
 
 Connector connector5 doesn't exist when it must to stay in sequence
 
-	Connectors 0 to 4 exist, then it skips to something above 5. This 
-	causes label problems (as fritzing assumes the labels are in sequence
-	and will misnumber the missing and following connections).
+Connectors 0 to 4 exist, then it skips to something above 5. This causes label problems (as fritzing assumes the labels are in sequence and will misnumber the missing and following connections).
 
 
 Error 65: File
@@ -925,7 +914,7 @@ At line 20
 Connector connector1pad is an ellipse not a circle, (gerber generation will 
 break.)
 
-	This indicates a connector in a pcb svg is an ellipse (i.e. has rx and
+This indicates a connector in a pcb svg is an ellipse (i.e. has rx and
 	ry rather than r as a radius in the xml). This is usually because of 
 	a removed translate that has changed horizontal or vertical scale. The
 	easiest fix is to copy one radius value to the other in xml editor
@@ -938,7 +927,7 @@ At line 20
 
 Connector connector2pin is a duplicate (and should be unique)
 
-	The listed connector has already been seen in the svg file and should 
+The listed connector has already been seen in the svg file and should 
 	be unique. As long as the two are defined identically fritzing seems
 	to ignore this, but it should be corrected. 
 
@@ -949,7 +938,7 @@ At line 2
 
 First Tag tag isn\'t an svg definition
 
-	The first tag in an svg file should be svg. If it isn't there will 
+The first tag in an svg file should be svg. If it isn't there will 
 	probably be a problem. Compare your file against a known correct one
 	is probably the best bet here. 
 
@@ -960,7 +949,7 @@ At line 20
 
 Found first group but without a svg definition
 
-	Similar to the error above, we have found a group but haven't seen a 
+Similar to the error above, we have found a group but haven't seen a 
 	svg id yet. 
 
 
@@ -970,7 +959,8 @@ At line 20
 
 Found a drawing element before a layerId (or no layerId)
 
-	A drawing element (perhaps a connector) has been found before the
+	
+ A drawing element (perhaps a connector) has been found before the
 	layerId. If it is a visible part of the drawing, it likely won't be 
 	present if the drawing is exported as a svg, so it is better to have
 	the layerId first. This also may mean that the layerId is missing 
@@ -983,7 +973,7 @@ At line 20
 
 More than one silkscreen/copper0/copper1 layer
 
-	We have already seen a layer of this name in this svg, a second one is 
+We have already seen a layer of this name in this svg, a second one is 
 	an error. 
 
 
@@ -993,7 +983,7 @@ At line 20
 
 Silkscreen layer should be at the top, not under group copper1
 
-	As it says the silkscreen layer should be at the top not under any 
+As it says the silkscreen layer should be at the top not under any 
 	other group. 
 
 
@@ -1003,7 +993,7 @@ At line 20
 
 copper0 should be under copper1 not the same level
 
-	As it says copper0 should be under copper1 not at the same level.
+As it says copper0 should be under copper1 not at the same level.
 
 
 Error 73: File
@@ -1012,7 +1002,7 @@ At line 20
 
 Too many layers, there should only be copper1 then copper0
 
-	There is a layer under copper1/copper0 which there shouldn't be. 
+There is a layer under copper1/copper0 which there shouldn't be. 
 
 
 Error 74: File
@@ -1021,7 +1011,7 @@ At line 20
 
 Connector connector1pad has no radius no hole will be generated
 
-	This has been determined to be a through hole part (as no hole is 
+This has been determined to be a through hole part (as no hole is 
 	normal for a smd part) but there is no radius for the pad and thus
 	no hole will be generated which is usually an error. 
 
@@ -1032,7 +1022,7 @@ Error 75: File
 This is a smd part as only the copper0 view is present
 but it is on the bottom layer, not the top.
 
-	Smd parts should normally be on the top side of the board so this is
+Smd parts should normally be on the top side of the board so this is
 	most likely an error. 
 
 
@@ -1043,7 +1033,7 @@ At line 20
 Copper0 and copper1 have non identical transforms (no transforms is best)
 
 
-	There is a transform in one or the other of the copper layers but not
+There is a transform in one or the other of the copper layers but not
 	the other. What this breaks is moving a component from the top of the
 	pcb to the bottom in inspector. The order of the transforms changes as
 	does the scaling making the part wrong on the pcb. Ungrouping and then
@@ -1057,7 +1047,7 @@ At line 20
 
 terminalId can't be a path as it won't work.
 
-	The terminalId can't be of the specified type (currently path, but 
+The terminalId can't be of the specified type (currently path, but 
 	there may be others that will get added). Unless it has a center such
 	as a rectangle, line, or polygon fritzing won't take it as a terminalId
 	and will default to the center of the svgId which likely isn't what you
@@ -1068,14 +1058,14 @@ Error 78: Svg File
 
 While looking for connector1pin, Subpart subpart2 has no connectors in the svg
 
-	This subpart doesn't have any connectors defined in it and it should. 
+This subpart doesn't have any connectors defined in it and it should. 
 
 Error 79: Svg File
 'filename.svg'
 
 Subpart subpart2 is missing connector connector1pin in the svg
 
-	The listed pin is missing in the svg file (it may be defined in another
+The listed pin is missing in the svg file (it may be defined in another
 	subpart, in which case it will have a warning message there). 
 
 Error 80: File
@@ -1084,7 +1074,7 @@ At line 20
 
 Both terminalId and legId present, only one or the other is allowed.
 
-	As the message says, there are two terminal definitions and it must 
+As the message says, there are two terminal definitions and it must 
 	be only one or the other.
 
 Error 81: File
@@ -1093,7 +1083,7 @@ At line 20
 
 Subpart connector subpart1 has no pins defined
 
-	This subpart has no pins defined and it usually needs at least one
+This subpart has no pins defined and it usually needs at least one
 	(there may be cases where this can be ignored though ...)
 
 Error 82: File
@@ -1102,7 +1092,7 @@ At line 20
 
 connector connector1pin isn't in a subpart
 
-	This connector isn't part of a subpart groupname and it should be. 
+This connector isn't part of a subpart groupname and it should be. 
 
 Error 83: File
 'filename.svg'
@@ -1110,7 +1100,7 @@ At line 20
 
 Connector connector1pin shouldn't be in subpart subpart2 as it is
 
-	The fzp file says this connector should be in another subpart, not 
+The fzp file says this connector should be in another subpart, not 
 	this one (at the time this error is issued we don't know what the 
 	other subpart is which is why it isn't listed). 
 
@@ -1120,7 +1110,7 @@ At line 20
 
 Connector connector1pin in incorrect subpart subpart2
 
-	This will usually accompany Error 83 above indicating that the
+This will usually accompany Error 83 above indicating that the
 	connector is in a subpart where it isn't defined in the fzp file. 
 	Again, because at this point we don't know where the connector should
 	be, we can't list the subpart it should be in. 
@@ -1393,7 +1383,7 @@ At line 20
 Height 200px is defined in px
 in or mm is a better option (px can cause scaling problems!)
 
-	While this is perfectly legal, it is unwise (but common!). If defined
+While this is perfectly legal, it is unwise (but common!). If defined
 	in px (and either no units or an explicit px is in px) fritzing will
 	make a guess (and sometimes get it wrong) about how many px per inch
 	the drawing used. Older Inkscapes (0.91 and older) used 90px per inch
@@ -1413,17 +1403,18 @@ in or mm is a better option (px can cause scaling problems!)
 	
 		heightpx * 72/90/96 = size in inches. 
 
-	You will need to try the likely values 72, 90 or 96 til the scaling 
+You will need to try the likely values 72, 90 or 96 til the scaling 
 	in Fritzing is correct and then set the correct value in inches (or
 	mm if you prefer) as the height and width in the first entry in xml 
 	editor.  
+ 
 Warning 20: File
 'filename.fzp'
 At line 20
 
 copper1 layer should be at the top, not under group copper0
 
-	If the second group is copper0 this is normal (or at least harmless)
+If the second group is copper0 this is normal (or at least harmless)
 	as the order doesn't really matter. However for smd parts the single
 	copper layer needs to be copper1 so it is preferable to be copper1
 	followed by copper0.
@@ -1435,7 +1426,7 @@ At line 20
 
 This appears to be a pcb svg but has no copper or silkscreen layers!
 
-	As the message says there is no image data here at all which is likely
+As the message says there is no image data here at all which is likely
 	an error (as the layer is defined in the fzp file).
 
 
@@ -1445,7 +1436,7 @@ At line 20
 
 Already have a layerId
 
-	There is a second (or more) layerId in a view that only allows one 
+There is a second (or more) layerId in a view that only allows one 
 	layer id. Likely an error. 
 
 
@@ -1457,7 +1448,7 @@ Key key_value
 value '-inkscape-font-specification 'Droid Sans, Normal' is invalid and has 
 been deleted
 
-	This is the typical value that I have seen. The lxml parser appears to
+This is the typical value that I have seen. The lxml parser appears to
 	object to the leading - in the value. This warning is here in case at
 	some point something less ignorable than this gets found here. 
 
@@ -1468,7 +1459,7 @@ At line 20
 Font family 'ArialMT' is not Droid Sans or OCRA
 This likely won't render in Fritzing
 
-	Fritzing only supports fonts Droid Sans or OCRA so this likely won't
+Fritzing only supports fonts Droid Sans or OCRA so this likely won't
 	be rendered in Fritzging. If you really need this particular font you
 	need to convert it to a path in your svg editor (but that is a pain to
 	anyone trying to modify your part and thus undesirable). 
@@ -1480,7 +1471,7 @@ At line 20
 Silkscreen layer should be above the copper layers for easier selection in
 pcb view
 
-	If silkscreen is below the copper layers then part selection will
+If silkscreen is below the copper layers then part selection will
 	favor the silkscreen layer making part selection more difficult. 
 	Moving the silkscreen layer before the copper layers will fix this. 
 
@@ -1491,7 +1482,7 @@ At line 20
 Apparant nested tspan which fritzing doesn't support
 If your text doesn't appear in Fritzing this is probably why
 
-	As noted nested tspan don't work in Fritzing at least sometimes, in
+As noted nested tspan don't work in Fritzing at least sometimes, in
 	fact tspan is not supposed to work but usually does. 
 
 Warning 27: File
@@ -1500,7 +1491,7 @@ At line 20
 
 Fritzing layerId silkscreen isn't a group which it usually should be
 
-	This is a warning because (at least for silkscreen, don't know about
+This is a warning because (at least for silkscreen, don't know about
 	the others) Fritzing will accept a path as the silkscreen (although
 	it can only have one element and a group would be a better bet). 
 
@@ -1510,14 +1501,14 @@ At line 20
 
 name gnd present more than once (and should be unique)
 
-	This id is duplicated in another name or description field. It is a 
+This id is duplicated in another name or description field. It is a 
 	warning in this case because dups here (unlike connectors) are not
 	typically fatal. The part file format document does say they should
 	be unique though. 
 
 Modified:
 
-	These messages document the changes made by the script to the input 
+These messages document the changes made by the script to the input 
 	files. Note the line numbers refer to the input file (which will be
 	usually in the filename.svg.bak file) as the output file has been 
 	prettyprinted which changes the line numbers. As a result you need 
@@ -1532,7 +1523,7 @@ File test.svg
 has already been processed
 but will be processed again as part of this fzp file in case of new warnings.
 
-	This svg file is likely shared by several parts. One downside of this
+This svg file is likely shared by several parts. One downside of this
 	is that the original of this file won't be in the .bak file as that
 	will be replaced by the version from the last processing output. It 
 	is processed again in case there are errors relative to this fzp file
@@ -1547,8 +1538,8 @@ At line 20
 
 Removed px from font-size leaving 3.5
 
-	Removed the px from font-size="3.5x" because Fritzing objects to the px
-	on the font-size and sets the font-size to 0 when the part is edited.
+Removed the px from font-size="3.5x" because Fritzing objects to the px
+on the font-size and sets the font-size to 0 when the part is edited.
 
 Modified 2: File
 'filename.fzp'
@@ -1557,11 +1548,7 @@ At line 20
 Connector connector0terminal had a zero width (or height), set to 10
 Check the alignment of this pin in the svg
 
-	As it says, a 0 length height or width was set to 10 which may causee
-	the location of the terminal to change. You need to verify (and move 
-	if necessary) the location of this terminal in the svg. You may also
-	need to adjust the size of the terminal to be 10 thou as the size of
-	10 may not be correct depending on scaling and translates. 
+As it says, a 0 length height or width was set to 10 which may causee the location of the terminal to change. You need to verify (and move if necessary) the location of this terminal in the svg. You may also need to adjust the size of the terminal to be 10 thou as the size of 10 may not be correct depending on scaling and translates. 
 
 Modified 3: File
 'filename.fzp'
@@ -1569,9 +1556,9 @@ At line 20
 
 Silkscreen, converted stoke/fill from white or not black to black
 
-	Notification that we have changed the color of the silkscreen layer 
-	in the svg from white (or not black) to black for both stroke and fill. 
+Notification that we have changed the color of the silkscreen layer in the svg from white (or not black) to black for both stroke and fill. 
 
+```
 Modified 4: File
 'filename.fzp'
 At line 20
@@ -1585,27 +1572,25 @@ doesn\'t match input file
 'filename1.svg'
 
 Corrected
+```
 
-	Notification that the reference file was updated to be the same as the
-	file name of this svg file. Nothing much appears to care whether this
-	field is correct or not.
-
+Notification that the reference file was updated to be the same as the file name of this svg file. Nothing much appears to care whether this field is correct or not.
+ 
+```
 Modified 5: File
 'filename.fzp'
 At line 20
 
 Converted style to inline xml
+```
 
-	A style command such as
+A style command such as
 
 	style="fill:none;stroke:#787878;stroke-width:9.72220039
 
-	has been converted to the equivelent xml:
+has been converted to the equivelent xml:
 
 	fill="none" stroke="#787878" stroke-width="9.72220039"
 
-	(which prettyprinting will then break down to one element per properly
-	 indented line changing the output line numbers substantially) because
-	fritzing (specifically bendable legs) does not support the style 
-	command syntax even though it is legal xml and Inkscape will convert
-	the inline xml to a style command to be CSS complient.
+	
+ (which prettyprinting will then break down to one element per properly indented line changing the output line numbers substantially) because fritzing (specifically bendable legs) does not support the style command syntax even though it is legal xml and Inkscape will convert the inline xml to a style command to be CSS complient.
