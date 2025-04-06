@@ -88,7 +88,7 @@ which should produce output like this (in large volume) on the console:
 
 ### Normal use
 
-**PrettyPrinting**
+### PrettyPrinting
 
 PP.py xml_file [another_xml_file ...]
 
@@ -104,16 +104,12 @@ svg file it may or may not do what you want. So try it and see. It won't
 split on blanks in text or quoted strings but may screw up on general xml 
 sometimes, so use it if it is useful. 
 
-FritzingCheckPart.py
+### FritzingCheckPart.py
 
 There are several modes (selected internally by the number and type of 
 the arguments to the script.):
 
-1)
-
-dir to dir:
-
-FritzingCheckPart.py src_dir dst_dir
+**FritzingCheckPart.py src_dir dst_dir**
 
 This processes all the fritzing files it finds in src_dir and writes their 
 output in to dst_dir. Dst_dir needs to be empty to avoid damaging existing 
@@ -124,25 +120,23 @@ empty. In the case of core in the example above the identical directory
 format will be recreated under dst_dir. To run this a second time you need
 to empty the dst_dir via command like 
 
-rm -R dst_dir/*
+    rm -R dst_dir/*
 
 This is mostly used for testing (against core as a source of diverse files, 
 many with errors) and to allow a mass correction of core if desired. Note 
 you only want to run this mode against core as the other modes will change
 files in core that are under git control and tend to break Fritzing. 
 
-2)
-
-FritzingCheckPart.py part.filename.fzp
+**FritzingCheckPart.py part.filename.fzp**
 
 part.filename.fzp format (from an unzipped .fzpz file which will have files
 of the form 
 
-part.filename.fzp
-svg.breadboard.filename.svg
-svg.icon.filename.svg
-svg.schematic.filename.svg
-svg.pcb.filename.svg
+    part.filename.fzp
+    svg.breadboard.filename.svg
+    svg.icon.filename.svg
+    svg.schematic.filename.svg
+    svg.pcb.filename.svg
 
 The input files will be renamed to filename.bak with the script output, the
 fixed up (we hope) xml, written to the original file name ready to be rezipped
@@ -153,18 +147,16 @@ then each svg file in turn will be processed. So you need to pay attention to
 the file name in the error messages, as it may not be referring to the input
 file, but an svg file linked from the input file. 
 
-3)
-
-FritzingCheckPart.py parts/user/filename.fzp
+**FritzingCheckPart.py parts/user/filename.fzp**
 
 the input file is in directory user/filename.fzp (and the user in the path 
 is required to be present, the script will error out if it is not). The svg 
 files are in 
 
-user/svg/user/breadboard/filename.svg
-user/svg/user/icon/filename.svg
-user/svg/user/pcb/filename.svg
-user/svg/user/schematic/filename.svg
+    user/svg/user/breadboard/filename.svg
+    user/svg/user/icon/filename.svg
+    user/svg/user/pcb/filename.svg
+    user/svg/user/schematic/filename.svg
 
 which is the standard place where imported parts are stored by fritzing (in 
 the core exampe at the start of this, the "core" directory is the same as 
@@ -173,9 +165,7 @@ svgs. So again you need to pay attention to the file name in the error
 messages, as it may not be referring to the input file, but an svg file 
 linked from the input file. 
 
-4)
-
-FritzingCheckPart.py filename.svg
+**FritzingCheckPart.py filename.svg**
 
 this form does what checks it can on the svg file (which aren't that many as 
 it lacks the data from the fzp file to know what connectors it should be 
@@ -204,22 +194,22 @@ this script to correct the modifications that Inkscape has made for CSS
 compliance before feeding it to Fritzing (which isn't CSS compliant in at 
 least some cases). 
 
-Configuration:
+## Configuration
 
 There are four internal configuration settings (you need to edit the listed
 .py file and change these with a text editor):
 
-1) in file PPTools.py
+### in file PPTools.py
 
-DetailPP = 'y'
+    DetailPP = 'y'
 
 Enabled by default. If detail prettyprinting of an svg appears to have screwed
 up, set this value to 'n' to disable detail prettyprinting and try again. If it
 works without the detailed prettyprinting please file a bug.
 
-2) in file FritzingTools.py
+### in file FritzingTools.py
 
-ModifyTerminal = 'n'
+    ModifyTerminal = 'n'
 
 Disabled by default because it will make a change that will change the spacing
 of the terminal position in the svg, which you will manually need to correct 
@@ -231,26 +221,25 @@ manually select the element and change its position with the tool bar which
 I find annoying. With the value set to 'n (the default) you will get a warning
 message like this one from a current core part:
 
-Warning 16: File
-'/cygdrive/c/fritzing/fritzing.0.9.3b.64.pc/fritzing-parts/core/../svg/core/schematic/4071_4_x_2_input_OR_gate_multipart_schematic.svg'
-At line 66
+    Warning 16: File
+    '/cygdrive/c/fritzing/fritzing.0.9.3b.64.pc/fritzing-parts/core/../svg/core/schematic/4071_4_x_2_input_OR_gate_multipart_schematic.svg'
+    At line 66
 
-Connector connector6terminal has a zero height
-and thus is not selectable in Inkscape
+    Connector connector6terminal has a zero height and thus is not selectable in Inkscape
 
 This warning is all that it will do. It is up to you to edit the svg and set 
 the height/width to something other than 0 and correct the x/y positioning. 
 
-	With the value set to 'y' on the same file (in this case changed to an
+With the value set to 'y' on the same file (in this case changed to an
 exported part so as to not change core which will break parts update, but the 
 same file as above) there is a different message in a different place:
 
-Modified 2: File
-'svg.schematic.prefix0000_fa1ebd566edf2f3d943a0046711f2d3c_1_schematic.svg'
-At line 23
+    Modified 2: File
+    'svg.schematic.prefix0000_fa1ebd566edf2f3d943a0046711f2d3c_1_schematic.svg'
+     At line 23
 
-Connector connector6terminal had a zero height, set to 10
-Check the alignment of this pin in the svg!
+    Connector connector6terminal had a zero height, set to 10
+    Check the alignment of this pin in the svg!
 
 This message tells you the script has made a change that is going to have moved
 the x/y position of the connector (and depending on what the scaling in the svg
@@ -262,9 +251,9 @@ mine) and in the correct x/y position as expected by the part. The upside is
 that Inkscape will now select the terminal and move it if you move the entire 
 terminal which it wouldn't before. 
 
-3) in file FritzingCheckPart.py
+### in file FritzingCheckPart.py
 
-IssueNameDupWarning = 'y'
+    IssueNameDupWarning = 'y'
 
 This value (enabled by default) if set to 'n' will supress the Warning 28:
 message which indictes the name field is not unique. While it should be 
@@ -273,9 +262,9 @@ to care and it seems to be only used for display in pin labels when hovered
 over. It is fairly common to not be unique and thus clutters up the error
 message display. I usually set this to 'n'.
 
-4) in file FritzingCheckPart.py
+### in file FritzingCheckPart.py
 
-Debug = 0
+    Debug = 0
 
 This value enables debug messages (set to 1 for file output to the console
 but no further debug messages, set to 2 for enter/exit routine debug messages,
@@ -285,7 +274,7 @@ operation.
 
 
 
-Likely bugs:
+## Likely bugs:
 
 The most likely bug relates to prettyprinting. To prettyprint svg files the
 lines are split on blanks (' ') and each element is indented and printed on 
@@ -293,65 +282,64 @@ a new line. Obviously (and for text, comments and referenceFile names so far,
 detected and corrected for) lines with spaces that are supposed to be there
 in the final document will get screwed up by the above and will need their 
 tags added to the exemption regex in the code. 
-	The original file(s) are saved in a .bak file (i.e. filename.svg will
+
+The original file(s) are saved in a .bak file (i.e. filename.svg will
 be moved to filename.svg.bak with the script output in filename.svg). However
 if you run the script a second time without copying the .bak file somewhere 
 safe the original file will be overwritten without further warning, so be 
 careful. In case of script error you will likely want the original file ...
-	There also may be any number of other bugs I haven't found yet. If you
+	
+There also may be any number of other bugs I haven't found yet. If you
 come across one please report it and I'll see if I can fix it.  
 
-Known bugs:
+## Known bugs
 
-1) Makeing a square pad in pcb via a path with a hole in it usually (but
-   apparantly not always) works in Fritzing. This script however will toss
+Makeing a square pad in pcb via a path with a hole in it usually (but apparantly not always) works in Fritzing. This script however will toss
 
-Error 74: File
-'/cygdrive/c/fritzing/fritzing.0.9.3b.64.pc/fritzing-parts/core/../svg/core/pcb/DRV8825_breakout_pcb.svg'
-At line 17
+    Error 74: File
+    '/cygdrive/c/fritzing/fritzing.0.9.3b.64.pc/fritzing-parts/core/../svg/core/pcb/DRV8825_breakout_pcb.svg'
+    At line 17
 
-Connector connector136 has no radius no hole will be generated
+    Connector connector136 has no radius no hole will be generated
 
-   Which isn't correct (but also isn't easy to fix). You can either ignore this
-   error as invalid (as long as the gerber export works which it does in this
-   case) or replace the pad with a standard circle with a radius and stroke 
-   width (which would be my choice in the matter!) which will remove this error.
+Which isn't correct (but also isn't easy to fix). You can either ignore this
+error as invalid (as long as the gerber export works which it does in this
+case) or replace the pad with a standard circle with a radius and stroke
+width (which would be my choice in the matter!) which will remove this error.
 
 
-Potential error messages and what to do about them:
+## Potential error messages and what to do about them
 
 First the dreaded trace back:
 
-$ ./FritzingCheckPart.py Bean_revE.fzp
-Traceback (most recent call last):
-  File "./FritzingCheckPart.py", line 51, in <module>
-    rc, FileType, Path, File = tools.ProcessArgs (sys.argv, Errors)
-TypeError: 'int' object is not iterable
+    $ ./FritzingCheckPart.py Bean_revE.fzp
+    Traceback (most recent call last):
+      File "./FritzingCheckPart.py", line 51, in <module>
+      rc, FileType, Path, File = tools.ProcessArgs (sys.argv, Errors)
+    TypeError: 'int' object is not iterable
 
 if you get a message like this, then I have screwed up and offended the python
 gods and they have taken exception (this is basically a software error). The
 best bet is to provide the call above and if possible a copy of the file that
 caused it so I can try and fix it. 
 
-
-
-now on to expected error messages:
+## Expected error messages:
 
 Most (but not all, as the first few below show) error messages are of the 
 form:
 
-Error: File
-'/cygdrive/c/fritzing/fritzing.0.9.3b.64.pc/fritzing.0.9.3b.64.pc/fritzing-parts/core/blend_micro1.0.fzp'
-At line 444
+    Error: File
+    '/cygdrive/c/fritzing/fritzing.0.9.3b.64.pc/fritzing.0.9.3b.64.pc/fritzing-parts/core/blend_micro1.0.fzp'
+    At line 444
 
 which gives you the file name followed by the line number (if known, sometimes
 it isn't) of where the error was detectd. 
 
-	Of note is the filename will be blend_micro1.0.fzp.bak if you are 
+Of note is the filename will be blend_micro1.0.fzp.bak if you are 
 processing an individual part (which will normally be the case). The reason 
 for this is the output file 
 
-blend_micro1.0.fzp
+    blend_micro1.0.fzp
 
 has been prettyprinted, and the line numbers won't match the input file 
 (blend_micro1.0.fzp.bak) so you need to look for the error in the filename 
@@ -361,42 +349,44 @@ file if you need to. The input file will give you the place in the file that
 the error occurred and you should fix it there and then remove the .bak 
 extension and re run the script in the corrected input file. 
 
-Usage messages (which are a type of error as they are fatal, but don't have
+### Usage messages 
+
+(which are a type of error as they are fatal, but don't have
 numbers any more)
 
+    Usage: PP.py filename (filename ...)
 
-Usage: PP.py filename (filename ...)
+Indicates you didn't give a filename to the PP.py script. It wants 
+one or more xml files such as
 
-	Indicates you didn't give a filename to the PP.py script. It wants 
-	one or more xml files such as
+    PP.py test.svg 
 
-	PP.py test.svg 
+or 
 
-	or 
+    PP.py test1.svg test2.xml test3.fzp
 
-	PP.py test1.svg test2.xml test3.fzp
+----
 
+    Usage: FritzingTools.py filename.fzp or filename.svg or srcdir dstdir
 
-Usage: FritzingTools.py filename.fzp or filename.svg or srcdir dstdir
+Either no or too many arguments to the script. It wants either a single file name or 2 directories. 
 
-	Either no or too many arguments to the script. It wants either a 
-	single file name or 2 directories. 
+----
 
+    Usage: FritzingTools.py src_dir dst_dir
+    src_dir filename isn\'t a directory
 
-Usage: FritzingTools.py src_dir dst_dir
+In this mode both arguments need to be directories and src isn't. 
 
-src_dir filename isn\'t a directory
+----
 
-	In this mode both arguments need to be directories and src isn't. 
+    Usage: FritzingTools.py src_dir dst_dir
 
+    dst_dir filename isn\'t a directory
 
-Usage: FritzingTools.py src_dir dst_dir
+In this mode both arguments need to be directories and dst isn't.
 
-dst_dir filename isn\'t a directory
-
-	In this mode both arguments need to be directories and dst isn't. 
-
-
+----
 
 Error messages in the order they occur in the code so essentially random
 but numbered so you can index by the number to get the error description
@@ -404,268 +394,212 @@ and an explaination of the errror (with the move of the Usage messages
 above, some numbers are now missing though.)  
 
 
-Error 1: Can not rename filename os_error_message (os_error_number)
+    Error 1: Can not rename filename os_error_message (os_error_number)
 
-	The os routines returned an exception when the input file was 
-        renamed. Hopefully the cause is obvious from the os messages. 
-
-
-Error 2: Can not open filename  os_error_message (os_error_number)
-
-	The os routines returned an exception when the input file was 
-        opened. Hopefully the cause is obvious from the os messages. 
+The os routines returned an exception when the input file was renamed. Hopefully the cause is obvious from the os messages. 
 
 
-Error 3: Can not write filename  os_error_message (os_error_number)
+    Error 2: Can not open filename  os_error_message (os_error_number)
 
-	The os routines returned an exception when the input file was 
-        written. Hopefully the cause is obvious from the os messages. 
-
-
-Error 4: Can not close filename os_error_message (os_error_number) 
-
-	The os routines returned an exception when the input file was 
-        closed. Hopefully the cause is obvious from the os messages. 
+The os routines returned an exception when the input file was opened. Hopefully the cause is obvious from the os messages. 
 
 
-Error 5: ParseFile can't read file filename
+    Error 3: Can not write filename  os_error_message (os_error_number)
 
-	The xml parser got an I/O error trying to parse the named file.
+	
+The os routines returned an exception when the input file was written. Hopefully the cause is obvious from the os messages. 
 
 
-Error 6: ParseFile error parsing the input xml file filename
+    Error 4: Can not close filename os_error_message (os_error_number) 
 
-	The xml parser found illegal xml at the line and column listed after
-	this. Note the lxml parser is more strict than either Inkscape or 
-	Fritzing and will report errors that both Inkscape and Fritzing 
-	will accept as valid xml. If you look however, there really is an 
-	error there and you should correct it. Below is an example from the 
-	Bean_revE.fzp file currently in core:
+The os routines returned an exception when the input file was closed. Hopefully the cause is obvious from the os messages. 
 
-	/cygdrive/c/fritzing/fritzing.0.9.3b.64.pc/fritzing.0.9.3b.64.pc/fritzing-parts/core/Bean_revE.fzp:161:90:FATAL:PARSER:ERR_SPACE_REQUIRED: attributes construct error
+
+    Error 5: ParseFile can't read file filename
+    
+The xml parser got an I/O error trying to parse the named file.
+
+    Error 6: ParseFile error parsing the input xml file filename
+
+The xml parser found illegal xml at the line and column listed after this. Note the lxml parser is more strict than either Inkscape or Fritzing and will report errors that both Inkscape and Fritzing will accept as valid xml. If you look however, there really is an error there and you should correct it. Below is an example from the Bean_revE.fzp file currently in core:
+
+    /cygdrive/c/fritzing/fritzing.0.9.3b.64.pc/fritzing.0.9.3b.64.pc/fritzing-parts/core/Bean_revE.fzp:161:90:FATAL:PARSER:ERR_SPACE_REQUIRED: attributes construct error
  
-	line 161 from Bean_revE.fzp
+line 161 from Bean_revE.fzp:
 
-	<p layer='schematic' hybrid='yes' svgId='connector81pin' terminalId='connector81terminal'hybrid='yes' /></schematicView>
+    <p layer='schematic' hybrid='yes' svgId='connector81pin' terminalId='connector81terminal'hybrid='yes' /></schematicView>
 
-	there are two errors in this line. There is a missing space between 
-	connector81terminal' and hybrid='yes' and the second hybrid='yes is 
-	wrong. The line should be corrected to this:
+there are two errors in this line. There is a missing space between connector81terminal' and hybrid='yes' and the second hybrid='yes is wrong. The line should be corrected to this:
 
-	<p layer='schematic' hybrid='yes' svgId='connector81pin' terminalId='connector81terminal' /></schematicView>
+    <p layer='schematic' hybrid='yes' svgId='connector81pin' terminalId='connector81terminal' /></schematicView>
 
-	which is correct xml and the complaints from parser will stop. You 
-	will get a lot more errors, but again they are really there, even 
-	though the part with these errors loads and runs happily in Fritzing. 
+which is correct xml and the complaints from parser will stop. You will get a lot more errors, but again they are really there, even though the part with these errors loads and runs happily in Fritzing. 
 
+    Error 8: filename isn't a file: ignored
 
-Error 8: filename isn't a file: ignored
+The file name provided either isn't a file or isn't readable and has been ignored. 
 
-	The file name provided either isn't a file or isn't readable and has
-	been ignored. 
 
+    Error 10: There must be a directory that is not '.' or '..' in the input name for a fzp file in order to find the svg files.
 
-Error 10: There must be a directory that is not '.' or '..' in the input name 
-for a fzp file in order to find the svg files.
+Indicates that it needs a directory (for example core/file.fzp) in order to figure out where the svg files are (../svg/core/... in this case). Supply the directory and it will be happy. 
 
-	Indicates that it needs a directory (for example core/file.fzp) in
-	order to figure out where the svg files are (../svg/core/... in this
-	case). Supply the directory and it will be happy. 
 
+    Error 13: dst dir
+    dst_dir must be empty and it is not
 
-Error 13: dst dir
+The dst_dir isn't empty (perhaps from a previous run). If you are surethe directory is expendable rm -R dst_dir/* will fix this.
 
-dst_dir
 
-must be empty and it is not
+    Error 14: Creating dir
+    dir_name  os_error_message (os_error_number)
 
-	The dst_dir isn't empty (perhaps from a previous run). If you are sure
-	the directory is expendable rm -R dst_dir/* will fix this.
+A problem creating one of the dst directories. Hopefully the os errormessages will make the cause clear. 
 
 
-Error 14: Creating dir
+    Error 15: Can not rename
 
-dir_name  os_error_message (os_error_number)
+    'src_file'
 
-	A problem creating one of the dst directories. Hopefully the os error
-	messages will make the cause clear. 
+    to
 
+    'src_file.bak'
 
-Error 15: Can not rename
+    'file_name_from_os'
 
-'src_file'
+    os_error_message (os_error_number)
 
-to
+A problem occurred trying to rename the src_file to src_file.bak. Hopefully the os error messages indicate why. 
 
-'src_file.bak'
+    Error 16: File
+    'filename'
+    At line 20
 
-'file_name_from_os'
+    Id xxx present more than once (and should be unique) 
 
-os_error_message (os_error_number)
+The listed id is present more than once and should be unique (often Fritzing ignores this but it is incorrect) 
 
-	A problem occurred trying to rename the src_file to src_file.bak.
-	Hopefully the os error messages indicate why. 
 
+    Error 17: File
+    'filename'
 
-Error 16: File
-'filename'
-At line 20
+    No connectors found for view viewname.
 
-Id xxx present more than once (and should be unique) 
+This is one of those messages without a line number as after all the connectors have been processed, no connectors were found. 
 
-	The listed id is present more than once and should be unique (often
-	Fritzing ignores this but it is incorrect) 
 
+    Error 18: File
+    'filename'
 
-Error 17: File
-'filename'
+    Connector connector2terminal is in the fzp file but not the svg file. (typo?)
 
-No connectors found for view viewname.
+This connector is specified in the fzp file, but isn't in the associated svg file. Depending on what type of connector it is this may or may not be fatal (a svgId is fatal a terminalId is not). In either case it is incorrect.
 
-	This is one of those messages without a line number as after all the
-	connectors have been processed, no connectors were found. 
 
+    Error 19: File
+    'filename'
 
-Error 18: File
-'filename'
+    File type xxx is an unknown format (software error)
 
-Connector connector2terminal is in the fzp file but not the svg file. (typo?)
+Another case of software error where the type isn't svg, fzppart or fzpfritz. Shouldn't happen.
 
-	This connector is specified in the fzp file, but isn't in the 
-	associated svg file. Depending on what type of connector it is
-	this may or may not be fatal (a svgId is fatal a terminalId is not).
-	In either case it is incorrect.
 
+    Error 20: File
+    'filename.svg'
 
-Error 19: File
-'filename'
+    During processing svgs from fzp, svg file doesn't exist 
 
-File type xxx is an unknown format (software error)
+The filename referenced for this view in the fzp file doesn't exist. Fritzing will try and find something to substitute, but this is stillan error. 
 
 
-	Another case of software error where the type isn't svg, fzppart or
-	fzpfritz. Shouldn't happen.
+    Error 21: Svg file
 
+    'Filename.svg'
 
-Error 20: File
-'filename.svg'
+    Has a different case in the file system than in the fpz file
 
-During processing svgs from fzp, svg file doesn't exist 
+    'filename.svg'
 
-	The filename referenced for this view in the fzp file doesn't exist. 
-	Fritzing will try and find something to substitute, but this is still
-	an error. 
+This doesn't matter on Windows as the file system is case insensitive, however it does matter on Linux and probably MacOS where the file system is case sensitive and the wrong case file will not be found. Change either the fzp or the file in the file system to the same case and all will be well on all systems. While I could correct thisin the fzp file it seems better to do it manually because it isn't clear whether the fzp file is incorrect or this particular file system is incorrect, and thus is better left to a human decision rather than a program.
 
 
-Error 21: Svg file
+    Error 22: File
+    'filename.fzp'
+    At line 1
 
-'Filename.svg'
+    No ModuleId found in fzp file
 
-Has a different case in the file system than in the fpz file
+There isn't a moduleId in the fzp file. This is likely fatal as I don't think the part can load without a moduleId. Add a moduleId to the file (preferably export a new part to get a Fritzing approved moduleId).
 
-'filename.svg'
 
-	This doesn't matter on Windows as the file system is case insensitive
-	however it does matter on Linux and probably MacOS where the file
-	system is case sensitive and the wrong case file will not be found. 
-	Change either the fzp or the file in the file system to the same 
-	case and all will be well on all systems. While I could correct this
-	in the fzp file it seems better to do it manually because it isn't 
-	clear whether the fzp file is incorrect or this particular file system
-	is incorrect, and thus is better left to a human decision rather than
-	a program.
+    Error 23: File
+    'filename.fzp'
+    At line 20
 
+    A bus is already defined, schematic parts won't work with busses
 
-Error 22: File
-'filename.fzp'
-At line 1
+A non empty Bus definition has already been seen. Fritzing won't currently support both busess and schematic parts.
 
-No ModuleId found in fzp file
 
-	There isn't a moduleId in the fzp file. This is likely fatal as I don't
-	think the part can load without a moduleId. Add a moduleId to the file
-	(preferably export a new part to get a Fritzing approved moduleId).
+    Error 24: File
+    'filename'
+    At line 20
 
+    More than one copy of Tag sometag
 
-Error 23: File
-'filename.fzp'
-At line 20
+Tag sometag should only occur once in the fzp file and we have seen another copy of it here.
 
-A bus is already defined, schematic parts won't work with busses
 
-	A non empty Bus definition has already been seen. Fritzing won't 
-	currently support both busess and schematic parts.
+    Error 25: File
+    'filename.fzp'
+    At line 2
 
+    Multiple ModuleIds found in fzp file
 
-Error 24: File
-'filename'
-At line 20
+There is more than one moduleId set in the fzp file (there should only be one)
 
-More than one copy of Tag sometag
 
-	Tag sometag should only occur once in the fzp file and we have seen 
-	another copy of it here.
+    Error 26: File
+    'filename.fzp'
+    At line 20
 
+    State error, expected tag tag not a view name
 
-Error 25: File
-'filename.fzp'
-At line 2
+There is something wrong in the fzp file (or this code). The tag we have doesn't match the expected state of a correct fzp file. Best bet is to check the format of the fzp file against a known good version, as there is probably an extra or missing line in this file. 
 
-Multiple ModuleIds found in fzp file
+    Error 27: File
+    'filename.fzp'
+    At line 20
 
-	There is more than one moduleId set in the fzp file (there should only
-	be one)
+    View name missing
 
+We have no viewname (iconView breadboardView schematicView pcbView) which should be present. 
 
-Error 26: File
-'filename.fzp'
-At line 20
 
-State error, expected tag tag not a view name
+    Error 28: File
+    'filename.fzp'
+    At line 20
 
-	There is something wrong in the fzp file (or this code). The tag we
-	have doesn't match the expected state of a correct fzp file. Best bet 
-	is to check the format of the fzp file against a known good version, 
-	as there is probably an extra or missing line in this file. 
+    Multiple view tags schematicView present, ignored
 
+There is more than one view of this name defined in the file when there should only be one of each. 
 
-Error 27: File
-'filename.fzp'
-At line 20
+    Error 29: File
+    'filename.fzp'
+    At line 20
 
-View name missing
+    View tag scchematicView  not recognized (typo?)
 
-	We have no viewname (iconView breadboardView schematicView pcbView)
-	which should be present. 
+View tag isn't one of (iconView breadboardView schematicView pcbView) which it should be.
 
 
-Error 28: File
-'filename.fzp'
-At line 20
+    Error 30: File
+    'filename.fzp'
+    At line 20
 
-Multiple view tags schematicView present, ignored
+    No image name present
 
-	There is more than one view of this name defined in the file when there
-	should only be one of each. 
-
-
-Error 29: File
-'filename.fzp'
-At line 20
-
-View tag scchematicView  not recognized (typo?)
-
-	View tag isn't one of (iconView breadboardView schematicView pcbView)
-	which it should be.
-
-
-Error 30: File
-'filename.fzp'
-At line 20
-
-No image name present
-
-	The file name for the svg file is missing in the fzp file. 
+The file name for the svg file is missing in the fzp file. 
 
 
 Error 31: File
@@ -674,8 +608,7 @@ At line 20
 
 Multiple viewname image files present
 
-	There is more than one image file name present, there should only be 
-	one. 
+There is more than one image file name present, there should only be one. 
 
 
 Error 32: File
@@ -684,8 +617,7 @@ At line 20
 
 No layerId value present
 
-	There is a layerId attribute present, but it has no value (and it needs
-	one). 
+There is a layerId attribute present, but it has no value (and it needs one). 
 
 
 Error 33: File
@@ -694,7 +626,7 @@ At line 20
 
 View viewname already has layerId layername, layername1 ignored
 
-	The layerId isn't unique and it must be. 
+The layerId isn't unique and it must be. 
 
  
 Error 34: File
@@ -702,9 +634,7 @@ Error 34: File
 
 No views found.
 
-	There are no views found in the fzp file. There isn't a line number 
-	because this occurs after we have seen all the lines that may contain
-	a view.
+There are no views found in the fzp file. There isn't a line number because this occurs after we have seen all the lines that may contain a view.
 
 
 Error 35: File
@@ -712,8 +642,7 @@ Error 35: File
 
 Unknown view viewname found. (Typo?)
 
-	Found a view name that isn't one of iconView breadboardView
-	schematicView or pcbView (probably a typo)
+Found a view name that isn't one of iconView breadboardView schematicView or pcbView (probably a typo)
 
 
 Error 36: File
